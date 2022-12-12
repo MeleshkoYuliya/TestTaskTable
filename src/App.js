@@ -4,7 +4,12 @@ import './styles.css';
 
 
 export const App = () => {
-  const grid = [['First cell']];
+  const search = window.location.search;
+  const query = new URLSearchParams(search);
+  const width = Number(query.get('width'));
+  const height = Number(query.get('height'));
+  const cols = Array.from({ length: width }, (v, k) => `col: ${k}`);
+  const grid = Array.from({ length: height }, (v, k) => cols);
 
   return (
     <div>
@@ -25,7 +30,7 @@ export const App = () => {
                   colSpan={1}
                   rowSpan={1}
                 >
-                  {gridCell}
+                  row: {rowIndex} {gridCell}
                 </td>
               ))}
             </tr>
