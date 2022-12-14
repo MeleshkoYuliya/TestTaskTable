@@ -51,3 +51,7 @@ td[data-selected=true]{
 .controls button:first-child {
   margin-right: 15px;
 }
+
+.cell-selected {
+  background-color: aquamarine;
+}
