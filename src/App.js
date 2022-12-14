@@ -1,7 +1,3 @@
-import './styles.css';
-import { MyTable } from "./MyTable";
+import { MyTable } from "./components/MyTable";
 
-
-export const App = () => {
-  return <MyTable />
-}
+export const App = () => <MyTable />;

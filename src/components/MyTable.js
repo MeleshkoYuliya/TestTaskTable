@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import _ from "lodash";
-import { handleGetSelection } from "./utils/tableHandlers";
+import { handleGetSelection } from "../utils/tableHandlers";
 
 import './styles.css';
 
@@ -57,27 +57,30 @@ export const MyTable = () => {
         const firstCell = grid[start.row][start.col];
         firstCell.colSpan = end.col - start.col + 1;
         firstCell.rowSpan = end.row - start.row + 1;
+        const newGrid = [...grid];
 
         for (let row = start.row; row <= end.row; row++) {
             for (let col = start.col; col <= end.col; col++) {
-                if (!_.isEqual(firstCell, grid[row][col])) {
-                    grid[row][col].parent = firstCell;
+                if (!_.isEqual(firstCell, newGrid[row][col])) {
+                    newGrid[row][col].parent = firstCell;
                 }
             }
         }
-        setGrid([...grid]);
+        setGrid(newGrid);
     };
 
     const handleSeparateCells = () => {
         const { start, end } = selection;
+        const newGrid = [...grid];
+
         for (let row = start.row; row <= end.row; row++) {
             for (let col = start.col; col <= end.col; col++) {
-                grid[row][col].parent = null;
-                grid[row][col].colSpan = 1;
-                grid[row][col].rowSpan = 1;
+                newGrid[row][col].parent = null;
+                newGrid[row][col].colSpan = 1;
+                newGrid[row][col].rowSpan = 1;
             }
         }
-        setGrid([...grid]);
+        setGrid(newGrid);
     };
 
     useEffect(() => {
