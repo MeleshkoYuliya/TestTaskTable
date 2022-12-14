@@ -74,31 +74,16 @@ export const App = () => {
             }
           }
 
-          // if ((cell.rowIndex > startRowIndex && cell.rowIndex < endRowIndex) && cell.colSpan > 1 && cell.colIndex < startColIndex) {
-          //   startColIndex = cell.colIndex;
-          // }
-
           if ((cell.rowIndex >= startRowIndex && cell.rowIndex < endRowIndex) && cell.colSpan > 1 && cell.colIndex + cell.colSpan - 1 === startColIndex) {
             startColIndex = cell.colIndex;
           }
-
-          // if ((cell.rowIndex > startRowIndex && cell.rowIndex < endRowIndex) && cell.colSpan > 1 && cell.colIndex + cell.colSpan - 1 > endColIndex) {
-          //   endColIndex = cell.colIndex + cell.colSpan - 1;
-          // }
-
-          // if ((cell.rowIndex < endRowIndex) && cell.colSpan > 1 && cell.colIndex + cell.colSpan - 1 > endColIndex) {
-          //   endColIndex = cell.colIndex + cell.colSpan - 1;
-          // }
         })
 
-        // console.log(startColIndex, endColIndex, startRowIndex, endRowIndex);
         handleGetSelectedCells({ startColIndex, endColIndex, startRowIndex, endRowIndex });
       }
 
     }
   }
-
-  // console.log(grid);
 
   const handleMerge = () => {
 
@@ -130,13 +115,6 @@ export const App = () => {
 
   const handleSeparate = () => {
     const mergedCells = cells?.filter((cell) => cell.colSpan > 1 || cell.rowSpan > 1);
-
-    // console.log(mergedCells);
-    // const newGrid = grid?.map((row, rowIndex) => {
-    //   const newRow = row.map((cell) => )
-    // });
-    // setGrid(newGrid);
-    // console.log(selectedCols)
   }
 
   useEffect(() => {
