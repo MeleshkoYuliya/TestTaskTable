@@ -78,7 +78,7 @@ export const App = () => {
           //   startColIndex = cell.colIndex;
           // }
 
-          if ((cell.rowIndex > startRowIndex && cell.rowIndex < endRowIndex) && cell.colSpan > 1 && cell.colIndex + cell.colSpan - 1 === startColIndex) {
+          if ((cell.rowIndex >= startRowIndex && cell.rowIndex < endRowIndex) && cell.colSpan > 1 && cell.colIndex + cell.colSpan - 1 === startColIndex) {
             startColIndex = cell.colIndex;
           }
 
