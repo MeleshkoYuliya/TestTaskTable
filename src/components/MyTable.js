@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useReducer } from "react";
 import _ from "lodash";
 import { handleGetSelection } from "../utils/tableHandlers";
 
@@ -12,8 +12,10 @@ export const MyTable = () => {
     const height = Number(query.get('height'));
 
     const [startSelection, setStartSelection] = useState(false);
-    const [startCell, setStartCell] = useState(null);
-    const [endCell, setEndCell] = useState(null);
+    const [{ startCell, endCell }, setState] = useReducer((state, action) => ({ ...state, ...action }), {
+        startCell: null,
+        endCell: null,
+    });
     const [grid, setGrid] = useState([]);
     const [selection, setSelection] = useState(null);
 
@@ -33,8 +35,7 @@ export const MyTable = () => {
         if (tagName === "TD") {
             const row = Number(rowIndex);
             const col = Number(colIndex);
-            setStartCell({ row, col });
-            setEndCell({ row, col });
+            setState({ startCell: { row, col }, endCell: { row, col }});
             setStartSelection(true);
         }
     };
@@ -48,7 +49,7 @@ export const MyTable = () => {
         if (tagName === "TD" && startSelection) {
             const row = Number(rowIndex);
             const col = Number(colIndex);
-            setEndCell({ row, col });
+            setState({ endCell: { row, col }});
         }
     };
 
